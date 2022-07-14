@@ -10,7 +10,7 @@ const Dotenv = require('dotenv-webpack'); // npm i dotenv-webpack -D variables d
 
 
 module.exports = {
-    // mode: 'production', // le pasamos explicitamente el modo desde el archivo
+    mode: 'production', // le pasamos explicitamente el modo desde el archivo
     // entry: './src/index.js' // Entry nos permite decir el punto de entrada de nuestra aplicación
     output:{ // Output nos permite decir hacia dónde va enviar lo que va a preparar webpacks
         path: path.resolve(__dirname, 'build'), //Con path.resolve podemos decir dónde va estar la carpeta y la ubicación del mismo
