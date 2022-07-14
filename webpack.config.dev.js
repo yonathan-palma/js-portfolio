@@ -2,21 +2,16 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const cssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // npm i css-minimizer-webpack-plugin -D
-const terserPlugin = require('terser-webpack-plugin'); // ya viene por defecto  npm i terser-webpack-plugin -D
-const Dotenv = require('dotenv-webpack'); // npm i dotenv-webpack -D variables de entorno
-// const { cleanWebpackPlugin } = require('clean-webpack-plugin'); //npm i clean-webpack-plugin -D
-
-
+const Dotenv = require('dotenv-webpack'); //npm i dotenv-webpack -D variables de entorno
 
 module.exports = {
-    // mode: 'production', // le pasamos explicitamente el modo desde el archivo
+    mode: 'development', // le pasamos explicitamente el modo desde el archivo
+    watch: true, //activar escucha para cambios en vivo 
     // entry: './src/index.js' // Entry nos permite decir el punto de entrada de nuestra aplicación
     output:{ // Output nos permite decir hacia dónde va enviar lo que va a preparar webpacks
         path: path.resolve(__dirname, 'build'), //Con path.resolve podemos decir dónde va estar la carpeta y la ubicación del mismo
-        filename: "[name].[contenthash].js",  // filename le pone el nombre al archivo final   
-        assetModuleFilename: "assets/images/[contenthash][ext][query]", // para las imagenes procesadas hast=nombre ext= extencion
-        clean: true,
+        filename: "[name].js",  // filename le pone el nombre al archivo final   
+        assetModuleFilename: "assets/images/[hash][ext][query]", // para las imagenes procesadas hast=nombre ext= extencion
     },
     resolve: {
         // Aqui ponemos las extensiones que tendremos en nuestro proyecto para webpack los lea
@@ -54,7 +49,7 @@ module.exports = {
                 test: /\.(woff|woff2)$/i,  //esta linea va para las dos formas
                 type: 'asset/resource',
                 generator:{
-                    filename: 'assets/fonts/[contenthash][ext]',
+                    filename: 'assets/fonts/[ext]',
                 },
 
                 // viaja forma 
@@ -89,7 +84,7 @@ module.exports = {
             filename: './index.html' // NOMBRE FINAL DEL ARCHIVO
         }),
         new MiniCssExtractPlugin({
-            filename: 'assets/[name].[contenthash].css'
+            filename: 'assets/[name].css'
         }),
         new CopyPlugin({ //npm i copy-webpack-plugin -D ya no  es necesario si implementamos el loader de la linea 34 pero se deben importar imagenes en el js
             patterns:[
@@ -100,23 +95,5 @@ module.exports = {
             ]
         }),
         new Dotenv(),
-        // new cleanWebpackPlugin(),
     ],
-    optimization:{
-        // nodeEnv: 'production', Le dice a webpack que establezca process.env.NODE_ENV
-        minimize: true, //por defecto
-        minimizer:[ //permite anular el minimizador predeterminado al proporcionar una o más instancias de TerserPlugin personalizadas 
-            new cssMinimizerPlugin({
-                minimizerOptions: {
-                    preset:[
-                        "default",
-                        {
-                            discardComments: { removeAll: true},
-                        },
-                    ],
-                },
-            }),
-            new terserPlugin(), // forma actigua ya no es necesaria esta linea 
-        ]
-    }
 }
