@@ -120,3 +120,16 @@ module.exports = {
         ]
     }
 }
+
+// git remote add origin https://github.com/NOMBRE_USUARIO/NOMBRE_PROYECTO.git
+
+// git push -u origin master
+// añgo de git
+
+// $ git remote -v
+// # Visualiza los remotos existentes
+// > origin  https://github.com/ghost/reactivecocoa.git (fetch)
+// > origin  https://github.com/ghost/reactivecocoa.git (push)
+
+// $ git remote set-url origin https://github.com/ghost/ReactiveCocoa.git
+// # Cambia la URL del remoto 'origen'
