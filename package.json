@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
-    "build:netlify": "node ./scripts/create-env.js && webpack --config webpack.config.js",
+    "wpk:prod": "node ./scripts/create-env.js && webpack --config webpack.config.js",
     "dev": "webpack --config webpack.config.dev.js",
     "serve": "webpack serve --mode=development",
     "dev:watch": "webpack --config webpack.config.dev.js --watch"
