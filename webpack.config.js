@@ -13,7 +13,7 @@ module.exports = {
     mode: 'production', // le pasamos explicitamente el modo desde el archivo
     // entry: './src/index.js' // Entry nos permite decir el punto de entrada de nuestra aplicación
     output:{ // Output nos permite decir hacia dónde va enviar lo que va a preparar webpacks
-        path: path.resolve(__dirname, 'build'), //Con path.resolve podemos decir dónde va estar la carpeta y la ubicación del mismo
+        path: path.resolve(__dirname, 'dist'), //Con path.resolve podemos decir dónde va estar la carpeta y la ubicación del mismo
         filename: "[name].[contenthash].js",  // filename le pone el nombre al archivo final   
         assetModuleFilename: "assets/images/[contenthash][ext][query]", // para las imagenes procesadas hast=nombre ext= extencion
         clean: true,
